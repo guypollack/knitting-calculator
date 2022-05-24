@@ -1,13 +1,10 @@
 function stitches(hLength, vLength, direction, totalRows, swatchStitches, swatchRows) {
     const totalStitchesToAdd = Math.round(hLength * swatchStitches);
     const rowsInSection = Math.round(vLength * swatchRows);
-    //console.log(totalStitchesToAdd,rowsInSection);
     const stitchAddingInterval = rowsInSection / totalStitchesToAdd;
-    //console.log(stitchAddingInterval);
     let stitchesArray = [];
     let i = 1;
     while (i * stitchAddingInterval <= rowsInSection) {
-        //console.log(i);
         if (Math.round(i * stitchAddingInterval) === 0) {
             stitchesArray.push(totalRows + 1);
         } else {
@@ -18,20 +15,7 @@ function stitches(hLength, vLength, direction, totalRows, swatchStitches, swatch
     if (direction === "d") {
         stitchesArray = stitchesArray.map(elem => elem * -1);
     }
-    //console.log(stitchesArray);
     return [stitchesArray,rowsInSection];
-}
-
-function display_a() {
-
-    let a = document.getElementById(id="swatch-stitches").value;
-
-    window.alert(a==="");
-}
-
-function radioAlert() {
-
-    window.alert(document.getElementById(id="l-i-1").checked)
 }
 
 function findDirection(side,number) {
@@ -47,7 +31,6 @@ function extractInputs(side,start,end) {
     for (let i = start; i <= end; i++) {
         inputs[i] = [+document.getElementById(id=`${side}-hchange-${i}`).value,+document.getElementById(id=`${side}-vchange-${i}`).value,findDirection(side,i)];
     }
-    
     return inputs;
 }
 
@@ -70,65 +53,14 @@ function calculateInstructions() {
         totalRowsL += stitchesResultsL[1];
     }
 
-    /*
-    stitchesResultsL = stitches(6.2,30,"i",totalRowsL,swatchStitches,swatchRows);
-    addedStitchesL = addedStitchesL.concat(stitchesResultsL[0]);
-    totalRowsL += stitchesResultsL[1];
-
-    stitchesResultsL = stitches(1,2,"i",totalRowsL,swatchStitches,swatchRows);
-    addedStitchesL = addedStitchesL.concat(stitchesResultsL[0]);
-    totalRowsL += stitchesResultsL[1];
-
-    stitchesResultsL = stitches(0,2,"i",totalRowsL,swatchStitches,swatchRows);
-    addedStitchesL = addedStitchesL.concat(stitchesResultsL[0]);
-    totalRowsL += stitchesResultsL[1];
-
-    stitchesResultsL = stitches(6,2,"d",totalRowsL,swatchStitches,swatchRows);
-    addedStitchesL = addedStitchesL.concat(stitchesResultsL[0]);
-    totalRowsL += stitchesResultsL[1];
-
-    stitchesResultsL = stitches(1,7,"i",totalRowsL,swatchStitches,swatchRows);
-    addedStitchesL = addedStitchesL.concat(stitchesResultsL[0]);
-    totalRowsL += stitchesResultsL[1];
-    */
-
-    //console.log(addedStitchesL);
-
-
     let addedStitchesR = [];
     let totalRowsR = 0;
-
-    //window.alert(Object.keys(inputsR));
 
     for (key of Object.keys(inputsR)) {
         let stitchesResultsR = stitches(inputsR[key][0],inputsR[key][1],inputsR[key][2],totalRowsR,swatchStitches,swatchRows);
         addedStitchesR = addedStitchesR.concat(stitchesResultsR[0]);
         totalRowsR += stitchesResultsR[1];
-    }
-
-    /*
-    stitchesResultsR = stitches(6.2,30,"i",totalRowsR,swatchStitches,swatchRows);
-    addedStitchesR = addedStitchesR.concat(stitchesResultsR[0]);
-    totalRowsR += stitchesResultsR[1];
-
-    stitchesResultsR = stitches(3,2,"i",totalRowsR,swatchStitches,swatchRows);
-    addedStitchesR = addedStitchesR.concat(stitchesResultsR[0]);
-    totalRowsR += stitchesResultsR[1];
-
-    stitchesResultsR = stitches(4,2,"d",totalRowsR,swatchStitches,swatchRows);
-    addedStitchesR = addedStitchesR.concat(stitchesResultsR[0]);
-    totalRowsR += stitchesResultsR[1];
-
-    stitchesResultsR = stitches(0,2,"i",totalRowsR,swatchStitches,swatchRows);
-    addedStitchesR = addedStitchesR.concat(stitchesResultsR[0]);
-    totalRowsR += stitchesResultsR[1];
-
-    stitchesResultsR = stitches(1,2,"i",totalRowsR,swatchStitches,swatchRows);
-    addedStitchesR = addedStitchesR.concat(stitchesResultsR[0]);
-    totalRowsR += stitchesResultsR[1];
-    */
-
-    
+    } 
 
     let stitchTotals = {};
 
@@ -164,14 +96,6 @@ function calculateInstructions() {
         }
     }
 
-    //console.log(stitchTotals);
-
-
-    
-    
-
-    //let tableRowsAdded = 0;
-
     let resultsArea = document.getElementById("results-area");
 
     let tableExists = !!document.getElementById("instructions-table");
@@ -189,19 +113,6 @@ function calculateInstructions() {
 
     for (elem of Object.keys(stitchTotals).sort((a,b) => b-a)) {
 
-        //tableRowsAdded++;
-
-        //Use to add to different tables:
-        //let tableBody = document.getElementById(`results-table-body-${Math.ceil(tableRowsAdded / 20)}`);
-        
-        /*
-        window.alert(elem);
-        window.alert(stitchTotals[elem][0]);
-        window.alert(stitchTotals[elem][0].isNan());
-        window.alert(stitchTotals[elem][1]);
-        window.alert(stitchTotals[elem][1].isNan());
-        */
-        
         castOff += Number(stitchTotals[elem][0]) + Number(stitchTotals[elem][1]);
         
         table.appendChild(tableBody);
@@ -234,24 +145,16 @@ function calculateInstructions() {
         }
         newCell3.appendChild(newText3);
 
-        //node.appendChild(textnode);
-
-
-        //document.getElementById("results-area").appendChild(node);
     }
-    //window.alert(castOff);
-    //console.log(instructions);
+    
     const castOnNode = document.createElement("p");
     castOnNode.setAttribute("class","cast-instruction");
     castOnNode.setAttribute("id","cast-on-text");
     castOnNode.appendChild(document.createTextNode(""));
     
     const castOffNode = document.createElement("p");
-    //castOffNode.setAttribute("style","color:red");
     castOffNode.setAttribute("class","cast-instruction");
     castOffNode.setAttribute("id","cast-off-text");
-    //const castOffText = document.createTextNode(`${castOff}`);
-    //const castOffText = document.createTextNode("");
     castOffNode.appendChild(document.createTextNode(""));
     const parentDiv = document.getElementById("instructions-table").parentNode;
     const tableElement = document.getElementById("instructions-table");
@@ -260,11 +163,3 @@ function calculateInstructions() {
     parentDiv.insertBefore(castOffNode,tableElement);
     document.getElementById("cast-off-text").innerHTML = `Cast Off: <span>${castOff}</span>`;
 }
-
-/*
-let doc = new jsPDF();
-
-doc.setFont("Courier");
-doc.text(instructions, 10, 10);
-//doc.save('a4.pdf');
-*/
