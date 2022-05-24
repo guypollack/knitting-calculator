@@ -1,0 +1,105 @@
+* {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+.form-area {
+    width: 80%;
+    height: 665px;
+    display: inline-block;
+}
+
+[class*="-form-properties"] {
+    width: 50%;
+    height: 415px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: scroll;
+}
+
+.general-form-properties {
+    width: 100%;
+    height: 200px;
+    background-color: rgb(218, 252, 226);
+    display: block;
+}
+
+.general-form-properties>form>label {
+    margin-right: 12px;
+}
+
+.left-form-properties {
+    background-color: rgb(221, 200, 255);
+    float: left;
+}
+
+.right-form-properties {
+    background-color: rgb(255, 200, 200);
+}
+
+label {
+    font-size: 9.5pt;
+}
+
+input {
+    margin-bottom: 20px;
+}
+
+label.col-left-header {
+    margin-left: 25px;
+}
+
+label.col-mid {
+    margin-left: 15px;
+    margin-right: 12px;
+}
+
+input.col-mid {
+    width: 150px;
+    margin-right: -5px;
+}
+
+input.i-col-right {
+    margin-right: 2px;
+}
+
+.form-submit-area {
+    width: 100%;
+    height: 50px;
+    position: relative;
+    top: -5px;
+    margin: 0px;
+    padding: 0px;
+    background-color: rgb(255, 237, 157);
+}
+
+button {
+    width: 200px;
+    position: absolute;
+    margin: 15px 40%;
+    display: block;
+}
+
+.results-area {
+    width: 20%;
+    background-color: rgb(211, 253, 253);
+    float: right;
+    overflow: scroll;
+    text-align: center;
+}
+
+.cast-instruction>span {
+    color: red;
+}
+
+table {
+    margin: auto;
+    border-collapse: collapse;
+    display: inline-block;
+}
+
+td {
+    width: 50px;
+    height: 30px;
+    border: 1px black solid;
+}
