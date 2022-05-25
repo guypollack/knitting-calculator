@@ -217,16 +217,15 @@ function calculateInstructions() {
     table.setAttribute("id","instructions-table");
     let tableBody = document.createElement("tbody");
     resultsArea.appendChild(table);
+    table.appendChild(tableBody);
 
     for (elem of Object.keys(stitchTotals).sort((a,b) => b-a)) {
 
         castOff += Number(stitchTotals[elem][0]) + Number(stitchTotals[elem][1]);
-        
-        table.appendChild(tableBody);
 
         let newRow = tableBody.insertRow();
-
         let newCell1 = newRow.insertCell();
+
         let instructionsL = `${stitchTotals[elem][0]} \t`;
         let newText1 = document.createTextNode(instructionsL);
         if (instructionsL[0] === "+") {
@@ -252,7 +251,6 @@ function calculateInstructions() {
             newCell3.setAttribute("style","color:orange");
         }
         newCell3.appendChild(newText3);
-
     }
     
     const castOnNode = document.createElement("p");
