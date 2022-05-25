@@ -29,8 +29,6 @@ function createInputElement(type,id,_name,_class) {
     element.setAttribute("id",id);
     element.setAttribute("name",_name);
     element.setAttribute("class",_class);
-    //element.setAttribute("value",value);
-    //element.setAttribute("style","margin-left:10px");
     return element
 }
 
@@ -180,11 +178,9 @@ function calculateInstructions() {
     for (elem of addedStitchesR) {
         if (elem > 0) {
             stitchTotals[elem] = ["  ",`+${addedStitchesR.filter(value => value === elem).length}`];
-            //castOff += Number(stitchTotals[elem][1]);
         }
         else {
             stitchTotals[elem * -1] = ["  ",addedStitchesR.filter(value => value === elem).length * -1];
-            //castOff += Number(stitchTotals[elem * -1][1]);
         }
         
     }
@@ -197,7 +193,6 @@ function calculateInstructions() {
             } else {
                 stitchTotals[elem] = [`+${addedStitchesL.filter(value => value === elem).length}`,"  "];
             }
-            //castOff += Number(stitchTotals[elem][0]);
         }
         else {
             if (elem * -1 in stitchTotals) {
@@ -205,7 +200,6 @@ function calculateInstructions() {
             } else {
                 stitchTotals[elem * -1] = [addedStitchesL.filter(value => value === elem).length * -1,"  "];
             }
-            //castOff += Number(stitchTotals[elem * -1][0]);
         }
     }
 
