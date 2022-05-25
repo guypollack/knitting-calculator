@@ -98,7 +98,6 @@ function addInputRow() {
     const rightDRadioButton = createInputElement("radio",`r-d-${newRowNumber}`,`r-i-d-${newRowNumber}`,"d-col-right");
     addStyling(rightDRadioButton);
 
-    
     newLeftInputRowContainer.appendChild(newLeftInputRowLabelNode);
     newLeftInputRowLabelNode.appendChild(newLeftInputRowLabel);
     newLeftInputRowContainer.appendChild(leftHorInputBox);
@@ -224,13 +223,6 @@ function calculateInstructions() {
     lineBreak.setAttribute("id","line-break");
     resultsArea.appendChild(lineBreak);
 
-    const castOffNode = document.createElement("p");
-    castOffNode.setAttribute("class","cast-instruction");
-    castOffNode.setAttribute("id","cast-off-text");
-    castOffNode.appendChild(document.createTextNode(""));
-    resultsArea.appendChild(castOffNode);
-    document.getElementById("cast-off-text").innerHTML = `Cast Off: <span>${castOff}</span>`;   
-
     let table = document.createElement("table");
     table.setAttribute("id","instructions-table");
     let tableBody = document.createElement("tbody");
@@ -269,5 +261,12 @@ function calculateInstructions() {
             newCell3.setAttribute("style","color:orange");
         }
         newCell3.appendChild(newText3);
-    }    
+    }
+    
+    const castOffNode = document.createElement("p");
+    castOffNode.setAttribute("class","cast-instruction");
+    castOffNode.setAttribute("id","cast-off-text");
+    castOffNode.appendChild(document.createTextNode(""));
+    resultsArea.insertBefore(castOffNode,table);
+    document.getElementById("cast-off-text").innerHTML = `Cast Off: <span>${castOff}</span>`;
 }
