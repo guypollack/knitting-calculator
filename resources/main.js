@@ -38,13 +38,13 @@ function addStyling(element) {
 
     switch (_class) {
         case "col-left":
-            element.setAttribute("style","margin-left:2px");
+            element.setAttribute("style","margin-left:-3px");
             break;
         case "col-mid":
-            element.setAttribute("style","margin-left:9px");
+            element.setAttribute("style","margin-left:14.5px");
             break;
         case "i-col-right":
-            element.setAttribute("style","margin-left:15px");
+            element.setAttribute("style","margin-left:14.5px");
             break;
         case "d-col-right":
             element.setAttribute("style","margin-left:14.5px");
@@ -187,7 +187,6 @@ function calculateInstructions() {
 
     for (elem of addedStitchesL) {
         if (elem > 0) {
-            //console.log(elem);
             if (elem in stitchTotals) {
                 stitchTotals[elem][0] = `+${addedStitchesL.filter(value => value === elem).length}`;
             } else {
