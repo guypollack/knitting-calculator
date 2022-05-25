@@ -16,7 +16,7 @@ p {
 [class*="-form-properties"] {
     width: 50%;
     height: auto;
-    /*display: inline-block;*/ /*for some reason creates white space between form and submit are*/ 
+    /*display: inline-block; for some reason creates white space between form and submit are*/ 
     white-space: nowrap;
     overflow: scroll;
 }
