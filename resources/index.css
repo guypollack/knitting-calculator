@@ -26,7 +26,6 @@ p {
 [class*="-form-properties"] {
     width: 50%;
     height: auto;
-    /*display: inline-block;*/ /*for some reason creates white space between form and submit are*/ 
     white-space: nowrap;
     overflow: scroll;
 }
@@ -85,21 +84,11 @@ input.i-col-right {
     margin-right: 2px;
 }
 
-.rectangle {
-    width: 100%;
-    height: auto;
-    min-height: 210px;
-    background-color: rgb(255, 237, 157);
-    /* position: relative; */
-    display: inline-block;
-}
-
 .form-submit-area {
     width: 100%;
     height: 50px;
     display: block;
     position: sticky;
-    /*top: -5px;*/
     margin: 0px;
     padding: 0px;
     background-color: rgb(255, 237, 157);
@@ -116,21 +105,17 @@ input.i-col-right {
 
 button {
     display: inline;
-    /* margin: 15px 40%; */
 }
 
 #add-row-button {
     position: relative;
     width: 100px;
     margin-left: 125px;
-    /*top: -30px;*/
 }
 
 #submit-button {
     width: 200px;
     position: relative;
-    /* margin: 15px 40%; */
-    /* display: block; */
 }
 
 .results-area {
@@ -141,6 +126,10 @@ button {
     text-align: center;
 }
 
+.results-area p {
+    margin: 4pt auto;
+}
+
 .cast-instruction>span {
     color: red;
 }
@@ -149,6 +138,7 @@ table {
     margin: auto;
     border-collapse: collapse;
     display: inline-block;
+    padding: 12pt;
 }
 
 td {
