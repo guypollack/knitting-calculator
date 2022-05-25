@@ -213,6 +213,24 @@ function calculateInstructions() {
         document.getElementById("instructions-table").remove()
     }
 
+    const castOnNode = document.createElement("p");
+    castOnNode.setAttribute("class","cast-instruction");
+    castOnNode.setAttribute("id","cast-on-text");
+    castOnNode.appendChild(document.createTextNode(""));
+    resultsArea.appendChild(castOnNode);
+    document.getElementById("cast-on-text").innerHTML = `Cast On: <span>${castOn}</span>`;
+
+    const lineBreak = document.createElement("br");
+    lineBreak.setAttribute("id","line-break");
+    resultsArea.appendChild(lineBreak);
+
+    const castOffNode = document.createElement("p");
+    castOffNode.setAttribute("class","cast-instruction");
+    castOffNode.setAttribute("id","cast-off-text");
+    castOffNode.appendChild(document.createTextNode(""));
+    resultsArea.appendChild(castOffNode);
+    document.getElementById("cast-off-text").innerHTML = `Cast Off: <span>${castOff}</span>`;   
+
     let table = document.createElement("table");
     table.setAttribute("id","instructions-table");
     let tableBody = document.createElement("tbody");
@@ -251,29 +269,5 @@ function calculateInstructions() {
             newCell3.setAttribute("style","color:orange");
         }
         newCell3.appendChild(newText3);
-    }
-    
-    const castOnNode = document.createElement("p");
-    castOnNode.setAttribute("class","cast-instruction");
-    castOnNode.setAttribute("id","cast-on-text");
-    castOnNode.appendChild(document.createTextNode(""));
-    
-    const lineBreak = document.createElement("br");
-    lineBreak.setAttribute("id","line-break");
-
-    const castOffNode = document.createElement("p");
-    castOffNode.setAttribute("class","cast-instruction");
-    castOffNode.setAttribute("id","cast-off-text");
-    castOffNode.appendChild(document.createTextNode(""));
-    
-    const parentDiv = document.getElementById("instructions-table").parentNode;
-    const tableElement = document.getElementById("instructions-table");
-    
-    parentDiv.insertBefore(castOnNode,tableElement);
-    document.getElementById("cast-on-text").innerHTML = `Cast On: <span>${castOn}</span>`;
-    
-    parentDiv.insertBefore(lineBreak,tableElement);
-    
-    parentDiv.insertBefore(castOffNode,tableElement);
-    document.getElementById("cast-off-text").innerHTML = `Cast Off: <span>${castOff}</span>`;
+    }    
 }
