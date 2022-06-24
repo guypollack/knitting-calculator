@@ -148,13 +148,11 @@ function addDetailRow() {
     const detailHeightInputBox = createInputElement("text",`detail-${newRowNumber}-height`,`detail-${newRowNumber}-height`,"col-right");
     detailHeightInputBox.setAttribute("style","margin-left:19.5px");
     
-    
     newDetailInputRowContainer.appendChild(newDetailInputRowLabelNode);
     newDetailInputRowLabelNode.appendChild(newDetailInputRowLabel);
     newDetailInputRowContainer.appendChild(detailInputBox);
     newDetailInputRowContainer.appendChild(detailAboveInputBox);
     newDetailInputRowContainer.appendChild(detailHeightInputBox);
-    //newDetailInputRowContainer.appendChild(document.createElement("br")); Not needed
     detailsInputArea.appendChild(newDetailInputRowContainer)
 }
 
@@ -222,11 +220,8 @@ function calculateInstructions() {
     }
 
     const ribLength = +document.getElementById("rib").value;
-
     const ribRows = calculateRibRows(ribLength,swatchRows);
-
     const inputRows = findNumberOfExistingRows("left-form-inputs",4);
-
     const inputsL = extractInputs("l",1,inputRows);
     const inputsR = extractInputs("r",1,inputRows);
     const detailsInputs = extractDetails();
@@ -247,13 +242,7 @@ function calculateInstructions() {
         let stitchesResultsR = stitches(inputsR[key][0],inputsR[key][1],inputsR[key][2],totalRowsR,swatchStitches,swatchRows);
         addedStitchesR = addedStitchesR.concat(stitchesResultsR[0]);
         totalRowsR += stitchesResultsR[1];
-    } 
-
-    /*let rowDetails = {
-        2: "add button",
-        4: "add button",
-        15: "detail"
-    }*/
+    }
 
     let stitchTotals = {};
 
@@ -283,14 +272,6 @@ function calculateInstructions() {
             }
         }
     }
-
-    /*for (elem of Object.keys(rowDetails)) {
-        if (elem in stitchTotals) {
-            stitchTotals[elem][2] = rowDetails[elem];
-        } else {
-            stitchTotals = ["  ","  ",rowDetails[elem]];
-        }
-    }*/
 
     for (i = 0; i < detailsInputs.length; i++) {
         const detailRow = Math.round(calculateRowsUpToSectionInclusive(detailsInputs[i][1],swatchRows)) + Math.round(detailsInputs[i][2] * swatchRows);
@@ -362,7 +343,6 @@ function calculateInstructions() {
     for (elem of Object.keys(stitchTotals).sort((a,b) => b-a)) {
 
         let newRow = tableBody.insertRow();
-        
         let newCell0 = newRow.insertCell();
         newCell0.setAttribute("style","border-top:none ; border-bottom:none ; border-left:none")
 
@@ -406,10 +386,8 @@ function listAllInputElements() {
         allElements.push(`l-hchange-${i}`,`l-vchange-${i}`,`l-i-${i}`,`l-d-${i}`,`r-hchange-${i}`,`r-vchange-${i}`,`r-i-${i}`,`r-d-${i}`);
     }
     for (i = 1; i <= findNumberOfExistingRows("details-inputs",3); i++) {
-        //window.alert(`detail-${i}`,`detail-${i}-above`,`detail-${i}-height`);
         allElements.push(`detail-${i}`,`detail-${i}-above`,`detail-${i}-height`);
     }
-    //window.alert(allElements);
     return allElements;
 }
 
@@ -429,11 +407,8 @@ function writeTextForFile() {
         console.log(val);
         text += `${elem},${val};`;
     }
-
     text = text.slice(0,text.length-1);
-
     return text;
-
 }
 
 function createTextFile() {
@@ -442,19 +417,12 @@ function createTextFile() {
 
 
     if (fileNameToSaveAs != null) {
-
         if (fileNameToSaveAs === "") {
             fileNameToSaveAs = document.getElementById("name").value;
         }
-
         const textToWrite = writeTextForFile();
-
-        //window.alert(textToWrite);
-
         const textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
-        
         const downloadLink = document.createElement("a");
-        
         downloadLink.download = fileNameToSaveAs;
         downloadLink.innerHTML = "Download File";
         if (window.webkitURL != null)
@@ -493,12 +461,8 @@ function addOrRemoveSections(text) {
     sectionsInText /= 4;
     detailRowsInText /= 3;
     
-    //const sectionsInText = (values.length - 7) / 8; //7 fields at top, 2 sides, 4 inputs in each row on each side
-    
     const currentSections = findNumberOfExistingRows("left-form-inputs",4);
     const currentDetailRows = findNumberOfExistingRows("details-inputs",3);
-
-    //console.log(sectionsInText,currentSections);
 
     if (sectionsInText != currentSections) {
         const sectionDifference = sectionsInText - currentSections;
