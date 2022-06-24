@@ -7,13 +7,30 @@
     <div class="form-area">
         <div class="general-form-properties">
             <h3>Knitting Instructions Calculator</h3>
-            <form>
+            <form onsubmit="return false">
                 <label for="swatch-stitches">Swatch Stitches / 1cm</label>
-                <label for="swatch-rows">Swatch Rows / 1cm</label><br>
+                <label for="swatch-rows">Swatch Rows / 1cm</label>
+                <label for="name">Name</label>
+                <label for="notes">Notes</label><br>
                 <input type="text" id="swatch-stitches" name="swatch-stitches">
-                <input type="text" id="swatch-rows" name="swatch-rows"><br>
-                <label for="cast-on">Cast On / cm</label><br>
-                <input type="text" id="cast-on" name="cast-on"><br>
+                <input type="text" id="swatch-rows" name="swatch-rows">
+                <input type="text" id="name" name="name">
+                <input type="text" id="notes" name="notes">
+                <input type="file" id="file-picker">
+                <label for="file-picker" id="file-picker-label">Load Pattern</label>
+                <button id="save-file-button" onclick="createTextFile()">Save Pattern</button><br>
+                <label for="cast-on">Cast On / cm</label>
+                <label for="times-2">x2</label>
+                <label for="yarn">Yarn</label>
+                <label for="tension">Tension</label>
+                <label for="ends">Ends</label>
+                <label for="rib">Rib / cm</label><br>
+                <input type="text" id="cast-on" name="cast-on">
+                <input type="checkbox" id="times-2" name="times-2" checked>
+                <input type="text" id="yarn" name="yarn">
+                <input type="text" id="tension" name="tension">
+                <input type="text" id="ends" name="ends">
+                <input type="text" id="rib" name="rib"><br>
             </form>
         </div>
         <div class="input-area">
@@ -25,7 +42,7 @@
                     <div>
                         <label for="l-hchange-1" class="col-left-header">Horizontal Change /cm</label>
                         <label for="l-vchange-1" class="col-mid">Vertical Change /cm</label>
-                        <label class="col-right">I / D</label><br>
+                        <label class="col-right-header">I / D</label><br>
                     </div>
                     <div>
                         <label>1.</label>
@@ -55,8 +72,8 @@
                 <form id="right-form-inputs">
                     <div>
                         <label for="r-hchange-1" class="col-left-header">Horizontal Change /cm</label>
-                        <label for="r-vchange-1" class="col-mid">Vertical Change /cm</label>
-                        <label class="col-right">I / D</label><br>
+                        <label for="r-vchange-1" class="col-mid-header">Vertical Change /cm</label>
+                        <label class="col-right-header">I / D</label><br>
                     </div>
                     <div>
                         <label>1.</label>
@@ -80,6 +97,24 @@
                         <input type="radio" id="r-d-3" name="r-i-d-3" value="d" class="d-col-right"><br>
                     </div>
                 </form>
+            </div>
+            <div class="details-area">
+                <p>Detail</p>
+                <button id="add-detail-button" onclick="addDetailRow()">Add Detail</button>
+                <button id="remove-detail-button" onclick="removeDetailRow()">Remove Detail</button>
+                <form id="details-inputs">
+                    <div>
+                        <label for="detail-1" class="col-left-header">Detail</label>
+                        <label for="detail-1-above" class="col-mid-header">Above Section #</label>
+                        <label for="detail-1-height" class="col-right-header">Height Above /cm</label>
+                    </div>
+                    <div>
+                        <label>1.</label>
+                        <input type="text" id="detail-1" name="detail-1" class="col-left">
+                        <input type="text" id="detail-1-above" name="detail-1-above" class="col-mid">
+                        <input type="text" id="detail-1-height" name="detail-1-height" class="col-right">
+                </form>
+                </div>
             </div>
         </div>
         <div class="form-submit-area">
