@@ -4,127 +4,253 @@
     <link href="./resources/index.css" type = "text/css" rel="stylesheet">
 </head>
 <body>
-    <div class="form-area">
-        <div class="general-form-properties">
-            <h3>Knitting Instructions Calculator</h3>
-            <form onsubmit="return false">
-                <label for="swatch-stitches">Swatch Stitches / 1cm</label>
-                <label for="swatch-rows">Swatch Rows / 1cm</label>
-                <label for="name">Name</label>
-                <label for="notes">Notes</label><br>
-                <input type="text" id="swatch-stitches" name="swatch-stitches">
-                <input type="text" id="swatch-rows" name="swatch-rows">
-                <input type="text" id="name" name="name">
-                <input type="text" id="notes" name="notes">
-                <input type="file" id="file-picker">
-                <label for="file-picker" id="file-picker-label">Load Pattern</label>
-                <button id="save-file-button" onclick="createTextFile()">Save Pattern</button><br>
-                <label for="cast-on">Cast On / cm</label>
-                <label for="times-2">x2</label>
-                <label for="yarn">Yarn</label>
-                <label for="tension">Tension</label>
-                <label for="ends">Ends</label>
-                <label for="rib">Rib / cm</label><br>
-                <input type="text" id="cast-on" name="cast-on">
-                <input type="checkbox" id="times-2" name="times-2" checked>
-                <input type="text" id="yarn" name="yarn">
-                <input type="text" id="tension" name="tension">
-                <input type="text" id="ends" name="ends">
-                <input type="text" id="rib" name="rib"><br>
-            </form>
-        </div>
+    <div class="content">
         <div class="input-area">
-            <div class="left-form-properties">
-                <p>Left</p>
-                <button id="add-row-button" onclick="addInputRow()">Add Section</button>
-                <button id="remove-row-button" onclick="removeInputRow()">Remove Section</button>
-                <form id="left-form-inputs">
-                    <div>
-                        <label for="l-hchange-1" class="col-left-header">Horizontal Change /cm</label>
-                        <label for="l-vchange-1" class="col-mid">Vertical Change /cm</label>
-                        <label class="col-right-header">I / D</label><br>
+            <form onsubmit="return false">
+                <div class="pattern-properties">
+                    <h3>Knitting Instructions Calculator</h3>
+                    <div class="pattern-properties-col-1">
+                        <label for="swatch-stitches">Swatch Stitches / 1cm</label>
                     </div>
-                    <div>
-                        <label>1.</label>
-                        <input type="text" id="l-hchange-1" name="l-hchange-1" class="col-left">
-                        <input type="text" id="l-vchange-1" name="l-vchange-1" class="col-mid">
-                        <input type="radio" id="l-i-1" name="l-i-d-1" value="i" class="i-col-right">
-                        <input type="radio" id="l-d-1" name="l-i-d-1" value="d" class="d-col-right"><br>
+                    <div class="pattern-properties-col-2">
+                        <label for="swatch-rows">Swatch Rows / 1cm</label>
                     </div>
-                    <div>
-                        <label>2.</label>
-                        <input type="text" id="l-hchange-2" name="l-hchange-2" class="col-left">
-                        <input type="text" id="l-vchange-2" name="l-vchange-2" class="col-mid">
-                        <input type="radio" id="l-i-2" name="l-i-d-2" value="i" class="i-col-right">
-                        <input type="radio" id="l-d-2" name="l-i-d-2" value="d" class="d-col-right"><br>
+                    <div class="pattern-properties-col-3">
+                        <label for="name">Name</label>
                     </div>
-                    <div>
-                        <label>3.</label>
-                        <input type="text" id="l-hchange-3" name="l-hchange-3" class="col-left">
-                        <input type="text" id="l-vchange-3" name="l-vchange-3" class="col-mid">
-                        <input type="radio" id="l-i-3" name="l-i-d-3" value="i" class="i-col-right">
-                        <input type="radio" id="l-d-3" name="l-i-d-3" value="d" class="d-col-right"><br>
+                    <div class="pattern-properties-col-4">
+                        <label for="notes">Notes</label>
                     </div>
-                </form>
+                    <div class="pattern-properties-col-1">
+                        <input type="text" id="swatch-stitches">
+                    </div>
+                    <div class="pattern-properties-col-2">
+                        <input type="text" id="swatch-rows">
+                    </div>
+                    <div class="pattern-properties-col-3">
+                        <input type="text" id="name">
+                    </div>
+                    <div class="pattern-properties-col-4">
+                        <input type="text" id="notes">
+                    </div>
+                    <div class="pattern-properties-col-5">
+                        <label for="file-picker" id="file-picker-label">Load Pattern</label>
+                        <input type="file" id="file-picker">
+                    </div>
+                    <div class="pattern-properties-col-6" >
+                        <button id="save-file-button" onclick="createTextFile()">Save Pattern</button><br>
+                    </div>
+                    <div id="cast-on-label">
+                        <label for="cast-on">Cast-On / cm</label>
+                    </div>
+                    <div id="times-2-label">
+                        <label for="times-2">x2</label>
+                    </div>
+                    <div class="pattern-properties-col-2">
+                        <label for="yarn">Yarn</label>
+                    </div>
+                    <div id="tension-label">
+                        <label for="tension">Tension</label>
+                    </div>
+                    <div id="ends-label">
+                        <label for="ends">Ends</label>
+                    </div>
+                    <div id="rib-label">
+                        <label for="rib">Rib / cm</label>
+                    </div>
+                    <div id="cast-on-box">
+                        <input type="text" id="cast-on" name="cast-on">
+                    </div>
+                    <div id="times-2-box">
+                        <input type="checkbox" id="times-2" name="times-2" checked>
+                    </div>
+                    <div id="yarn-box">
+                        <input type="text" id="yarn" name="yarn">
+                    </div>
+                    <div id="tension-box">
+                        <input type="text" id="tension" name="tension">    
+                    </div>
+                    <div id="ends-box">
+                        <input type="text" id="ends" name="ends">
+                    </div>
+                    <div id="rib-box">
+                        <input type="text" id="rib" name="rib">
+                    </div>
+                </div>
+            </form>
+            <div class="changes-container">
+                <div class="changes" id="l-changes">
+                    <div class="changes-title">
+                        <h4>Left</h4>
+                    </div>
+                    <div class="add-section-button">
+                        <button onclick="insertInputsBothSides()">Add Section</button>
+                    </div>
+                    <div class="remove-section-button">
+                        <button onclick="removeInputsBothSides()">Remove Section</button>
+                    </div>
+                    <div class="col-2">
+                        <h5>Horizontal Change / cm</h5>
+                    </div>
+                    <div class="col-3">
+                        <h5>Vertical Change / cm</h5>
+                    </div>
+                    <div class="col-4">
+                        <h5>I</h5>
+                    </div>
+                    <div class="col-5">
+                        <h5>D</h5>
+                    </div>
+                    <div class="col-1">
+                        <h5>1.</h5>
+                    </div>
+                    <div class="col-2">
+                        <input type="text" id="l-hchange-1">
+                    </div>
+                    <div class="col-3">
+                        <input type="text" id="l-vchange-1">
+                    </div>
+                    <div class="col-4">
+                        <input type="radio" id="l-i-1" name="l-i-d-1" value="i">
+                    </div>
+                    <div class="col-5">
+                        <input type="radio" id="l-d-1" name="l-i-d-1" value="d">
+                    </div>
+                    <div class="col-1">
+                        <h5>2.</h5>
+                    </div>
+                    <div class="col-2">
+                        <input type="text" id="l-hchange-2">
+                    </div>
+                    <div class="col-3">
+                        <input type="text" id="l-vchange-2">
+                    </div>
+                    <div class="col-4">
+                        <input type="radio" id="l-i-2" name="l-i-d-2" value="i">
+                    </div>
+                    <div class="col-5">
+                        <input type="radio" id="l-d-2" name="l-i-d-2" value="d">
+                    </div>
+                    <div class="col-1">
+                        <h5>3.</h5>
+                    </div>
+                    <div class="col-2">
+                        <input type="text" id="l-hchange-3">
+                    </div>
+                    <div class="col-3">
+                        <input type="text" id="l-vchange-3">
+                    </div>
+                    <div class="col-4">
+                        <input type="radio" id="l-i-3" name="l-i-d-3" value="i">
+                    </div>
+                    <div class="col-5">
+                        <input type="radio" id="l-d-3" name="l-i-d-3" value="d">
+                    </div>
+                </div>
+                <div class="changes" id="r-changes">
+                    <div class="changes-title">
+                        <h4>Right</h4>
+                    </div>
+                    <div class="col-2">
+                        <h5>Horizontal Change / cm</h5>
+                    </div>
+                    <div class="col-3">
+                        <h5>Vertical Change / cm</h5>
+                    </div>
+                    <div class="col-4">
+                        <h5>I</h5>
+                    </div>
+                    <div class="col-5">
+                        <h5>D</h5>
+                    </div>
+                    <div class="col-1">
+                        <h5>1.</h5>
+                    </div>
+                    <div class="col-2">
+                        <input type="text" id="r-hchange-1">
+                    </div>
+                    <div class="col-3">
+                        <input type="text" id="r-vchange-1">
+                    </div>
+                    <div class="col-4">
+                        <input type="radio" id="r-i-1" name="r-i-d-1" value="i">
+                    </div>
+                    <div class="col-5">
+                        <input type="radio" id="r-d-1" name="r-i-d-1" value="d">
+                    </div>
+                    <div class="col-1">
+                        <h5>2.</h5>
+                    </div>
+                    <div class="col-2">
+                        <input type="text" id="r-hchange-2">
+                    </div>
+                    <div class="col-3">
+                        <input type="text" id="r-vchange-2">
+                    </div>
+                    <div class="col-4">
+                        <input type="radio" id="r-i-2" name="r-i-d-2" value="i">
+                    </div>
+                    <div class="col-5">
+                        <input type="radio" id="r-d-2" name="r-i-d-2" value="d">
+                    </div>
+                    <div class="col-1">
+                        <h5>3.</h5>
+                    </div>
+                    <div class="col-2">
+                        <input type="text" id="r-hchange-3">
+                    </div>
+                    <div class="col-3">
+                        <input type="text" id="r-vchange-3">
+                    </div>
+                    <div class="col-4">
+                        <input type="radio" id="r-i-3" name="r-i-d-3" value="i">
+                    </div>
+                    <div class="col-5">
+                        <input type="radio" id="r-d-3" name="r-i-d-3" value="d">
+                    </div>
+                </div>
             </div>
-            <div class="right-form-properties">
-                <p>Right</p>
-                <form id="right-form-inputs">
-                    <div>
-                        <label for="r-hchange-1" class="col-left-header">Horizontal Change /cm</label>
-                        <label for="r-vchange-1" class="col-mid-header">Vertical Change /cm</label>
-                        <label class="col-right-header">I / D</label><br>
-                    </div>
-                    <div>
-                        <label>1.</label>
-                        <input type="text" id="r-hchange-1" name="r-hchange-1" class="col-left">
-                        <input type="text" id="r-vchange-1" name="r-vchange-1" class="col-mid">
-                        <input type="radio" id="r-i-1" name="r-i-d-1" value="i" class="i-col-right">
-                        <input type="radio" id="r-d-1" name="r-i-d-1" value="d" class="d-col-right"><br>
-                    </div>
-                    <div>
-                        <label>2.</label>
-                        <input type="text" id="r-hchange-2" name="r-hchange-2" class="col-left">
-                        <input type="text" id="r-vchange-2" name="r-vchange-2" class="col-mid">
-                        <input type="radio" id="r-i-2" name="r-i-d-2" value="i" class="i-col-right">
-                        <input type="radio" id="r-d-2" name="r-i-d-2" value="d" class="d-col-right"><br>
-                    </div>
-                    <div>
-                        <label>3.</label>
-                        <input type="text" id="r-hchange-3" name="r-hchange-3" class="col-left">
-                        <input type="text" id="r-vchange-3" name="r-vchange-3" class="col-mid">
-                        <input type="radio" id="r-i-3" name="r-i-d-3" value="i" class="i-col-right">
-                        <input type="radio" id="r-d-3" name="r-i-d-3" value="d" class="d-col-right"><br>
-                    </div>
-                </form>
+            <div class="details" id="details">
+                <div class="details-title">
+                    <h4>Detail</h4>
+                </div>
+                <div class="add-section-button">
+                    <button id="add-detail-button" onclick="addDetailRow()">Add Detail</button>
+                </div>
+                <div class="remove-section-button">
+                    <button id="remove-detail-button" onclick="removeDetailRow()">Remove Detail</button>
+                </div>
+                <div class="detail-col-2">
+                    <h5>Detail</h5>
+                </div>
+                <div class="detail-col-3">
+                    <h5> Above Section #</h5>
+                </div>
+                <div class="detail-col-4">
+                    <h5>Height Above /cm</h5>
+                </div>
+                <div class="col-1">
+                    <h5>1.</h5>
+                </div>
+                <div class="detail-col-2">
+                    <input type="text" id="detail-1" name="detail-1">
+                </div>
+                <div class="detail-col-3">
+                    <input type="text" id="detail-1-above" name="detail-1-above">
+                </div>
+                <div class="detail-col-4">
+                    <input type="text" id="detail-1-height" name="detail-1-height">
+                </div>
             </div>
-            <div class="details-area">
-                <p>Detail</p>
-                <button id="add-detail-button" onclick="addDetailRow()">Add Detail</button>
-                <button id="remove-detail-button" onclick="removeDetailRow()">Remove Detail</button>
-                <form id="details-inputs">
-                    <div>
-                        <label for="detail-1" class="col-left-header">Detail</label>
-                        <label for="detail-1-above" class="col-mid-header">Above Section #</label>
-                        <label for="detail-1-height" class="col-right-header">Height Above /cm</label>
-                    </div>
-                    <div>
-                        <label>1.</label>
-                        <input type="text" id="detail-1" name="detail-1" class="col-left">
-                        <input type="text" id="detail-1-above" name="detail-1-above" class="col-mid">
-                        <input type="text" id="detail-1-height" name="detail-1-height" class="col-right">
-                </form>
+            <div class="submit">
+                <div class="button-container">
+                    <button id="submit-button" onclick="calculateInstructions()">Calculate Instructions</button>
                 </div>
             </div>
         </div>
-        <div class="form-submit-area">
-            <div class="button-container">
-                <button id="submit-button" onclick="calculateInstructions()">Calculate Instructions</button>
-            </div>
+        <div class="results-area" id="results-area">
+            <h3>Results</h3>
         </div>
-    </div>
-    <div class="results-area" id="results-area">
-        <h3>Instructions</h3>
     </div>
     <script src="./resources/main.js"></script>
 </body>

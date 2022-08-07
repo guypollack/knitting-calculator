@@ -55,10 +55,10 @@ function addStyling(element) {
     }
 }
 
-function addInputRow() {
-    const newRowNumber = findNumberOfExistingRows("left-form-inputs",4) + 1;
-    const leftFormDiv = document.getElementById("left-form-inputs");
-    const rightFormDiv = document.getElementById("right-form-inputs");
+/*function addInputRow() {
+    const newRowNumber = findNumberOfExistingRows("l-changes",4) + 1;
+    const leftFormDiv = document.getElementById("l-changes");
+    const rightFormDiv = document.getElementById("r-changes");
     
     let newLeftInputRowLabelText = ""
     if (newRowNumber < 10) {
@@ -118,50 +118,65 @@ function addInputRow() {
 }
 
 function removeInputRow() {
-    const lastRowNumber = findNumberOfExistingRows("left-form-inputs",4);
+    const lastRowNumber = findNumberOfExistingRows("l-changes",4);
 
     if (lastRowNumber > 1) {
         document.getElementById(`l-hchange-${lastRowNumber}`).parentNode.remove();
         document.getElementById(`r-hchange-${lastRowNumber}`).parentNode.remove();
     }
 }
+*/
+
 
 function addDetailRow() {
-    const newRowNumber = findNumberOfExistingRows("details-inputs",3) + 1;
-    const detailsInputArea = document.getElementById("details-inputs");
+    const newRowNumber = findNumberOfExistingRows("details",3) + 1;
+    const detailsInputArea = document.getElementById("details");
 
     let newDetailInputRowLabelText = ""
-    if (newRowNumber < 10) {
+    if (newRowNumber < 10) { //can change - no longer needed?
         newDetailInputRowLabelText = `${newRowNumber}. `
     } else {
         newDetailInputRowLabelText = `${newRowNumber}.`
     }
 
-    const newDetailInputRowContainer = document.createElement("div");
-    const newDetailInputRowLabelNode = document.createElement("label");
-    const newDetailInputRowLabel = document.createTextNode(newDetailInputRowLabelText);
+    const newRowLabelContainer = document.createElement("div");
+    const newRowLabelNode = document.createElement("h5");
+    const newRowLabel = document.createTextNode(newDetailInputRowLabelText);
     
-    const detailInputBox = createInputElement("text",`detail-${newRowNumber}`,`detail-${newRowNumber}`,"col-left");
-    detailInputBox.setAttribute("style","margin-left:-3px");
-    const detailAboveInputBox = createInputElement("text",`detail-${newRowNumber}-above`,`detail-${newRowNumber}-above`,"col-mid");
-    detailAboveInputBox.setAttribute("style","margin-left:14.5px");
-    const detailHeightInputBox = createInputElement("text",`detail-${newRowNumber}-height`,`detail-${newRowNumber}-height`,"col-right");
-    detailHeightInputBox.setAttribute("style","margin-left:19.5px");
+    detailsInputArea.appendChild(newRowLabelContainer);
+    newRowLabelContainer.appendChild(newRowLabelNode);
+    newRowLabelNode.appendChild(newRowLabel);
+    newRowLabelContainer.classList.add("col-1");
+    newRowLabelNode.id = `detail-${newRowNumber}-label`;
+
+    const newRowInput1Container = document.createElement("div");
+    newRowInput1Container.classList.add("detail-col-2");
+    const newRowInput1 = createInputElement("text",`detail-${newRowNumber}`,`detail-${newRowNumber}`,"");
+    newRowInput1Container.append(newRowInput1);
     
-    newDetailInputRowContainer.appendChild(newDetailInputRowLabelNode);
-    newDetailInputRowLabelNode.appendChild(newDetailInputRowLabel);
-    newDetailInputRowContainer.appendChild(detailInputBox);
-    newDetailInputRowContainer.appendChild(detailAboveInputBox);
-    newDetailInputRowContainer.appendChild(detailHeightInputBox);
-    detailsInputArea.appendChild(newDetailInputRowContainer)
+    const newRowInput2Container = document.createElement("div");
+    newRowInput2Container.classList.add("detail-col-3");
+    const newRowInput2 = createInputElement("text",`detail-${newRowNumber}-above`,`detail-${newRowNumber}-above`,"");
+    newRowInput2Container.append(newRowInput2);
+    
+    const newRowInput3Container = document.createElement("div");
+    newRowInput3Container.classList.add("detail-col-4");
+    const newRowInput3 = createInputElement("text",`detail-${newRowNumber}-height`,`detail-${newRowNumber}-height`,"");
+    newRowInput3Container.append(newRowInput3);
+    
+    detailsInputArea.appendChild(newRowInput1Container);
+    detailsInputArea.appendChild(newRowInput2Container);
+    detailsInputArea.appendChild(newRowInput3Container);
 }
 
 function removeDetailRow() {
-    const lastRowNumber = findNumberOfExistingRows("details-inputs",3);
+    const lastRowNumber = findNumberOfExistingRows("details",3);
 
     if (lastRowNumber > 1) {
         document.getElementById(`detail-${lastRowNumber}-height`).parentNode.remove();
+        document.getElementById(`detail-${lastRowNumber}-above`).parentNode.remove();
         document.getElementById(`detail-${lastRowNumber}`).parentNode.remove();
+        document.getElementById(`detail-${lastRowNumber}-label`).parentNode.remove();
     }
 }
 
@@ -183,7 +198,7 @@ function extractInputs(side,start,end) {
 
 function extractDetails() {
     const details = [];
-    for (let i = 1; i <= findNumberOfExistingRows("details-inputs",3); i++) {
+    for (let i = 1; i <= findNumberOfExistingRows("details",3); i++) {
         details.push([document.getElementById(`detail-${i}`).value,+document.getElementById(`detail-${i}-above`).value,+document.getElementById(`detail-${i}-height`).value]);
     }
     return details;
@@ -191,7 +206,7 @@ function extractDetails() {
 
 function calculateRowsUpToSectionInclusive(section,swatchRows) {
     
-    if (section > findNumberOfExistingRows("left-form-inputs",4)) return;
+    if (section > findNumberOfExistingRows("l-changes",4)) return;
     
     let rows = 0;
 
@@ -221,7 +236,7 @@ function calculateInstructions() {
 
     const ribLength = +document.getElementById("rib").value;
     const ribRows = calculateRibRows(ribLength,swatchRows);
-    const inputRows = findNumberOfExistingRows("left-form-inputs",4);
+    const inputRows = findNumberOfExistingRows("l-changes",4);
     const inputsL = extractInputs("l",1,inputRows);
     const inputsR = extractInputs("r",1,inputRows);
     const detailsInputs = extractDetails();
@@ -277,7 +292,7 @@ function calculateInstructions() {
         const detailRow = Math.round(calculateRowsUpToSectionInclusive(detailsInputs[i][1],swatchRows)) + Math.round(detailsInputs[i][2] * swatchRows);
         if (detailRow > 0) {
             if (detailRow in stitchTotals) {
-                console.log(stitchTotals[detailRow][2] === "  ")
+                //console.log(stitchTotals[detailRow][2] === "  ")
                 if (stitchTotals[detailRow][2] === "  ") {
                     stitchTotals[detailRow][2] = detailsInputs[i][0];
                 } else {
@@ -382,10 +397,10 @@ function calculateInstructions() {
 
 function listAllInputElements() {
     const allElements = ["swatch-stitches","swatch-rows","name","notes","cast-on","times-2","yarn","tension","ends","rib"];
-    for (i = 1; i <= findNumberOfExistingRows("left-form-inputs",4); i++) {
+    for (i = 1; i <= findNumberOfExistingRows("l-changes",4); i++) {
         allElements.push(`l-hchange-${i}`,`l-vchange-${i}`,`l-i-${i}`,`l-d-${i}`,`r-hchange-${i}`,`r-vchange-${i}`,`r-i-${i}`,`r-d-${i}`);
     }
-    for (i = 1; i <= findNumberOfExistingRows("details-inputs",3); i++) {
+    for (i = 1; i <= findNumberOfExistingRows("details",3); i++) {
         allElements.push(`detail-${i}`,`detail-${i}-above`,`detail-${i}-height`);
     }
     return allElements;
@@ -398,13 +413,13 @@ function writeTextForFile() {
     let val = "";
     
     for (elem of allElements) {   
-        console.log(elem);         
+        //console.log(elem);         
         if (elem.slice(1,4) === "-i-" || elem.slice(1,4) === "-d-" || elem === "times-2") {
             val = document.getElementById(elem).checked;
         } else {
             val = document.getElementById(elem).value;
         }
-        console.log(val);
+        //console.log(val);
         text += `${elem},${val};`;
     }
     text = text.slice(0,text.length-1);
@@ -461,18 +476,19 @@ function addOrRemoveSections(text) {
     sectionsInText /= 4;
     detailRowsInText /= 3;
     
-    const currentSections = findNumberOfExistingRows("left-form-inputs",4);
-    const currentDetailRows = findNumberOfExistingRows("details-inputs",3);
+    const currentSections = findNumberOfExistingRows("l-changes",4);
+    const currentDetailRows = findNumberOfExistingRows("details",3);
 
     if (sectionsInText != currentSections) {
         const sectionDifference = sectionsInText - currentSections;
         if (sectionDifference > 0) {
             for (let i = 1; i <= sectionDifference; i++) {
-                addInputRow();
+                insertInputsBothSides();
             }
         } else {
             for (let i = 1; i <= Math.abs(sectionDifference); i++) {
-                removeInputRow();
+                removeInputsBothSides();
+                
             }
         }
     }
@@ -497,6 +513,7 @@ function populatePage(text) {
         let elementValueArray = values[i].split(",");
     
         if (elementValueArray[0].slice(1,4) === "-i-" || elementValueArray[0].slice(1,4) === "-d-" || elementValueArray[0] === "times-2") {
+            //console.log(elementValueArray[0], !!document.getElementById(elementValueArray[0]));
             document.getElementById(elementValueArray[0]).checked = elementValueArray[1] === "true";
         } else {
             document.getElementById(elementValueArray[0]).value = elementValueArray[1];
@@ -526,3 +543,88 @@ input.addEventListener("change", () => {
 
     reader.readAsText(file);
 })
+
+document.getElementsByClassName("changes-container")[0].style.height = "190px";
+
+
+//from testchildcount.js
+
+function currentRowCount() {
+    return document.getElementById("l-changes").querySelectorAll(".col-1").length;
+}
+
+function insertInput(side,newRowNumber) {
+    
+    const targetDiv = document.getElementById(`${side}-changes`);
+
+    const divToInsert1 = document.createElement("div");
+    divToInsert1.setAttribute("class","col-1");
+    const h5ToInsert1 = document.createElement("h5");
+
+    h5ToInsert1.appendChild(document.createTextNode(`${newRowNumber}.`));
+    divToInsert1.appendChild(h5ToInsert1);
+    targetDiv.appendChild(divToInsert1);
+    
+    const divToInsert2 = document.createElement("div");
+    const inputToInsert2 = document.createElement("input");
+    divToInsert2.setAttribute("class","col-2");
+    inputToInsert2.setAttribute("type","text");
+    inputToInsert2.setAttribute("id",`${side}-hchange-${newRowNumber}`);
+    divToInsert2.appendChild(inputToInsert2);
+    targetDiv.appendChild(divToInsert2);
+
+    const divToInsert3 = document.createElement("div");
+    const inputToInsert3 = document.createElement("input");
+    divToInsert3.setAttribute("class","col-3");
+    inputToInsert3.setAttribute("type","text");
+    inputToInsert3.setAttribute("id",`${side}-vchange-${newRowNumber}`);
+    divToInsert3.appendChild(inputToInsert3);
+    targetDiv.appendChild(divToInsert3);
+
+    const divToInsert4 = document.createElement("div");
+    const inputToInsert4 = document.createElement("input");
+    divToInsert4.setAttribute("class","col-4");
+    inputToInsert4.setAttribute("type","radio");
+    inputToInsert4.setAttribute("name",`${side}-i-d-${newRowNumber}`);
+    inputToInsert4.setAttribute("id",`${side}-i-${newRowNumber}`);
+    divToInsert4.appendChild(inputToInsert4);
+    targetDiv.appendChild(divToInsert4);
+    
+    const divToInsert5 = document.createElement("div");
+    const inputToInsert5 = document.createElement("input");
+    divToInsert5.setAttribute("class","col-5");
+    inputToInsert5.setAttribute("type","radio");
+    inputToInsert5.setAttribute("name",`${side}-i-d-${newRowNumber}`);
+    inputToInsert5.setAttribute("id",`${side}-d-${newRowNumber}`);
+    divToInsert5.appendChild(inputToInsert5);
+    targetDiv.appendChild(divToInsert5);   
+}
+
+function removeInput(side,currentRowNumber) {
+
+    if (currentRowNumber === 1) return; //should be unnecessary
+
+    document.getElementById(`${side}-changes`).children[document.getElementById(`${side}-changes`).children.length-1].remove();
+    document.getElementById(`${side}-changes`).children[document.getElementById(`${side}-changes`).children.length-1].remove();
+    document.getElementById(`${side}-changes`).children[document.getElementById(`${side}-changes`).children.length-1].remove();
+    document.getElementById(`${side}-changes`).children[document.getElementById(`${side}-changes`).children.length-1].remove();
+    document.getElementById(`${side}-changes`).children[document.getElementById(`${side}-changes`).children.length-1].remove();
+}
+
+function insertInputsBothSides() {
+    let currentHeight = Number(document.getElementsByClassName("changes-container")[0].style.height.slice(0,3));
+    currentHeight += 40;
+    insertInput("l",currentRowCount()+1);
+    insertInput("r",currentRowCount());
+    document.getElementsByClassName("changes-container")[0].style.height = `${currentHeight}px`;
+}
+
+function removeInputsBothSides() {
+    let currentHeight = Number(document.getElementsByClassName("changes-container")[0].style.height.slice(0,3));
+    if (currentRowCount() > 1) {
+        currentHeight -= 40;
+        removeInput("l",currentRowCount());
+        removeInput("r",currentRowCount()+1);
+        document.getElementsByClassName("changes-container")[0].style.height = `${currentHeight}px`;
+    }
+}
