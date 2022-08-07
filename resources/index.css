@@ -341,4 +341,5 @@ td {
 
 td:nth-child(5)  {
     padding-left: 10px;
+    text-align: left;
 }
