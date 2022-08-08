@@ -280,6 +280,7 @@ h5 {
     grid-template-rows: 55px 10px 40px;
     grid-auto-rows: 40px;
     align-items: center;
+    overflow: hidden;
 }
 
 .detail-col-2 {
