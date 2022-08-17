@@ -309,10 +309,9 @@ function calculateInstructions() {
     let instructionsExist = !!document.getElementById("small-instruction-text");
 
     if (instructionsExist) {
-        document.getElementById("small-instruction-text").remove()
-        document.getElementById("line-break").remove()
-        document.getElementById("cast-on-off-text").remove()
-        document.getElementById("instructions-table").remove()
+        document.getElementById("small-instruction-text").remove();
+        document.getElementById("cast-on-off-text").remove();
+        document.getElementById("instructions-table").remove();
     }
 
     if (totalRowsR + totalRowsL === 0) {
@@ -331,10 +330,6 @@ function calculateInstructions() {
                                     Notes: ${document.getElementById("notes").value}`
     smallInstructionsNode.appendChild(document.createTextNode(smallInstructionText));
     resultsArea.appendChild(smallInstructionsNode);
-
-    const lineBreak = document.createElement("br");
-    lineBreak.setAttribute("id","line-break");
-    resultsArea.appendChild(lineBreak);
 
     for (elem of Object.keys(stitchTotals).sort((a,b) => b-a)) {
         castOff += Number(stitchTotals[elem][0]) + Number(stitchTotals[elem][1]);
@@ -358,8 +353,6 @@ function calculateInstructions() {
     for (elem of Object.keys(stitchTotals).sort((a,b) => b-a)) {
 
         let newRow = tableBody.insertRow();
-        let newCell0 = newRow.insertCell();
-        newCell0.setAttribute("style","border-top:none ; border-bottom:none ; border-left:none")
 
         let newCell1 = newRow.insertCell();
         let instructionsL = `${stitchTotals[elem][0]} \t`;
