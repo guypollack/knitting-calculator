@@ -156,12 +156,12 @@ function addDetailRow() {
     
     const newRowInput2Container = document.createElement("div");
     newRowInput2Container.classList.add("detail-col-3");
-    const newRowInput2 = createInputElement("text",`detail-${newRowNumber}-above`,`detail-${newRowNumber}-above`,"");
+    const newRowInput2 = createInputElement(type="number",`detail-${newRowNumber}-above`,`detail-${newRowNumber}-above`,"");
     newRowInput2Container.append(newRowInput2);
     
     const newRowInput3Container = document.createElement("div");
     newRowInput3Container.classList.add("detail-col-4");
-    const newRowInput3 = createInputElement("text",`detail-${newRowNumber}-height`,`detail-${newRowNumber}-height`,"");
+    const newRowInput3 = createInputElement(type="number",`detail-${newRowNumber}-height`,`detail-${newRowNumber}-height`,"");
     newRowInput3Container.append(newRowInput3);
     
     detailsInputArea.appendChild(newRowInput1Container);
@@ -561,7 +561,7 @@ function insertInput(side,newRowNumber) {
     const divToInsert2 = document.createElement("div");
     const inputToInsert2 = document.createElement("input");
     divToInsert2.setAttribute("class","col-2");
-    inputToInsert2.setAttribute("type","text");
+    inputToInsert2.setAttribute("type",type="number");
     inputToInsert2.setAttribute("id",`${side}-hchange-${newRowNumber}`);
     divToInsert2.appendChild(inputToInsert2);
     targetDiv.appendChild(divToInsert2);
@@ -569,7 +569,7 @@ function insertInput(side,newRowNumber) {
     const divToInsert3 = document.createElement("div");
     const inputToInsert3 = document.createElement("input");
     divToInsert3.setAttribute("class","col-3");
-    inputToInsert3.setAttribute("type","text");
+    inputToInsert3.setAttribute("type",type="number");
     inputToInsert3.setAttribute("id",`${side}-vchange-${newRowNumber}`);
     divToInsert3.appendChild(inputToInsert3);
     targetDiv.appendChild(divToInsert3);
