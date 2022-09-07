@@ -240,21 +240,20 @@ input[type="number"], input[type="text"] {
 @media only screen and (max-width: 600px) {
     .pattern-properties {
         /* background-color: red; */
+        margin-top: -30px;
         grid-template-columns: repeat(2, 50vw);
         grid-template-rows: repeat(5,50px);
+        padding-bottom: 10px;
     }
     .pattern-properties div {
         /* border: 1px solid black; */
     }
-    .input-area h3 {
-        height: 20px;
-        padding-bottom: 10px;
-    }
+
     .input-area h3, .swatch-stitches-container, .name-container,
     .file-picker-container, .cast-on-container, .yarn-container,
     .ends-container, .file-picker-container {
         grid-column: 1;
-        margin-left: 30px;
+        margin-left: 27px;
     }
     .swatch-rows-container, .notes-container, .save-file-button-container,
     .times-2-container, .tension-container, .rib-container,
@@ -262,12 +261,37 @@ input[type="number"], input[type="text"] {
         grid-column: 2;
         margin-left: 0px;
     }
+    .input-area h3 {
+        height: 20px;
+        padding-bottom: 10px;
+        margin-left: 30px;
+    }
+    .swatch-title-container {
+        grid-column: 1;
+        margin-left: 30px;
+        margin-top: 10px;
+        height: 50px;
+        overflow: hidden;
+    }
+    .swatch-stitches-container, .swatch-rows-container {
+        height: 70px;
+    }
     .file-picker-container, .save-file-button-container {
-        grid-row: 6;
-        margin-top: -10px;
+        grid-row: 7;
+    }
+    .file-picker-container {
+        margin-left: 30px;
+    }
+    .save-file-button-container {
+        margin-left: 3px;
+    }
+    .pattern-properties label {
+        margin-left: 3px;
     }
     .pattern-properties input[type="number"], .pattern-properties input[type="text"], #cast-on, #yarn, #tension, #ends, #rib {
-        width: 40vw;
+        width: 38vw;
+        margin-left: 3px;
+        margin-bottom: 3px;
     }
 }
 
@@ -483,10 +507,13 @@ input[type="number"], input[type="text"] {
     }
     .detail-col-4 {
         grid-column: 12 / span 7;
-        margin-left: 6px;
+        margin-left: 2px;
     }
     .detail-col-2 input {
         width: 20vw;
+    }
+    .detail-col-3 input {
+        width: 26vw;
     }
     .detail-col-4 input {
         width: 31vw;
