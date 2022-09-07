@@ -146,7 +146,7 @@ function addDetailRow() {
     detailInputArea.appendChild(newRowLabelContainer);
     newRowLabelContainer.appendChild(newRowLabelNode);
     newRowLabelNode.appendChild(newRowLabel);
-    newRowLabelContainer.classList.add("col-1");
+    newRowLabelContainer.classList.add("detail-col-1");
     newRowLabelNode.id = `detail-${newRowNumber}-label`;
 
     const newRowInput1Container = document.createElement("div");

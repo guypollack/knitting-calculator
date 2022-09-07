@@ -28,6 +28,16 @@ html,body {
     * {
         overflow-x: hidden;
     }
+    html, body {
+        min-width: 0;
+    }
+    .input-area, .submit, .results-area {
+        width: 100vw;
+    }
+    h3 {
+        font-size: 17px;
+    }
+
 }
 
 div {
@@ -243,7 +253,7 @@ input[type="number"], input[type="text"] {
     .file-picker-container, .cast-on-container, .yarn-container,
     .ends-container, .file-picker-container {
         grid-column: 1;
-        margin-left: 50px;
+        margin-left: 30px;
     }
     .swatch-rows-container, .notes-container, .save-file-button-container,
     .times-2-container, .tension-container, .rib-container,
@@ -256,7 +266,7 @@ input[type="number"], input[type="text"] {
         margin-top: -10px;
     }
     .pattern-properties input[type="number"], .pattern-properties input[type="text"], #cast-on, #yarn, #tension, #ends, #rib {
-        width: 35vw;
+        width: 40vw;
     }
 }
 
@@ -316,6 +326,7 @@ input[type="number"], input[type="text"] {
 
 .changes-title, .detail-title {
     grid-column: 3 / span 3;
+    margin-left: -4px;
 }
 
 .add-section-button {
@@ -365,33 +376,33 @@ input[type="number"], input[type="text"] {
 
 @media only screen and (max-width: 600px) {
     .changes-title {
-        grid-column: 2;
+        grid-column: 2 / span 2;
     }
     .add-section-button {
-        grid-column: 3 / span 3;
-        margin-left: 30px;
+        grid-column: 5 / span 6;
     }
     .remove-section-button {
-        grid-column: 6 / span 3;
-        margin-left: 20px;
+        grid-column: 13 / span 6;
+        margin-left: -35px;
     }
     .col-1 {
         grid-column: 1;
         justify-self: end;
+        margin-left: 30px;
     }
     .col-2 {
-        grid-column: 2 / span 3;
+        grid-column: 2 / span 6;
+        margin-left: -4px;
     }
     .col-3 {
-        grid-column: 5 / span 3;
+        grid-column: 9 / span 6;
     }
     .col-4 {
-        grid-column: 8;
-        margin-left: -50px;
+        grid-column: 16;
+        margin-left: -12px;
     }
     .col-5 {
-        grid-column: 9;
-        margin-left: -100px;
+        grid-column: 17;
     }
     .changes input[type="number"] {
         width: 110px;
@@ -444,28 +455,35 @@ input[type="number"], input[type="text"] {
         grid-template-columns: repeat(18,1fr);
     }
     .detail-title {
-        grid-column: 2 / span 2;
+        grid-column: 2 / span 4;
+        margin-left: 1px;
     }
     .detail > .add-section-button {
-        grid-column: 4 / span 3;
-        margin-left: -20px;
+        grid-column: 6 / span 5;
+        margin-left: -8px;
     }
     .detail > .remove-section-button {
-        grid-column: 7 / span 3;
-        margin-left: -40px;
+        grid-column: 13 / span 5;
+        /* margin-left: -30px; */
     }
     .detail-col-1 {
         grid-column: 1;
+        margin-right: 0;
+        margin-left: 30px;
     }
     .detail-col-2 {
-        grid-column: 2 / span 3;
+        grid-column: 2 / span 6;
     }
     .detail-col-3 {
-        grid-column: 5 / span 4;
+        grid-column: 8 / span 5;
+        margin-left: -8px;
     }
     .detail-col-4 {
-        grid-column: 9 / span 2;
-        margin-left: -50px;
+        grid-column: 13 / span 5;
+        /* margin-left: -16px; */
+    }
+    .detail input {
+        width: 25vw;
     }
 }
 
@@ -475,12 +493,6 @@ input[type="number"], input[type="text"] {
     justify-content: center;
     align-items: center;
     background-color: rgb(255, 237, 157);
-}
-
-@media only screen and (max-width: 600px) {
-    .submit {
-        width: 100vw;
-    }
 }
 
 .results-area {
@@ -529,7 +541,10 @@ td:nth-child(4)  {
 
 
 @media only screen and (max-width: 600px) {
+    .results-area {
+        padding-bottom: 10px;
+    }
     .results-area h3, .results-area p, .results-area table {
-        margin-left: 50px;
+        margin-left: 30px;
     }
 }
