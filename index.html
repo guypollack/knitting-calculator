@@ -2,78 +2,72 @@
 <html>
 <head>
     <link href="./resources/index.css" type = "text/css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./resources/main.js" defer></script>
 </head>
 <body>
     <div class="content">
         <div class="input-area">
             <form onsubmit="return false">
+                <h3>Knitting Instructions Calculator</h3>
                 <div class="pattern-properties">
-                    <h3>Knitting Instructions Calculator</h3>
-                    <div class="pattern-properties-col-1">
+                    <div class="swatch-stitches-container">
                         <label for="swatch-stitches">Swatch Stitches / 1cm</label>
-                    </div>
-                    <div class="pattern-properties-col-2">
-                        <label for="swatch-rows">Swatch Rows / 1cm</label>
-                    </div>
-                    <div class="pattern-properties-col-3">
-                        <label for="name">Name</label>
-                    </div>
-                    <div class="pattern-properties-col-4">
-                        <label for="notes">Notes</label>
-                    </div>
-                    <div class="pattern-properties-col-1">
+                        <br>
                         <input type="number" id="swatch-stitches">
                     </div>
-                    <div class="pattern-properties-col-2">
+                    <div class="swatch-rows-container">
+                        <label for="swatch-rows">Swatch Rows / 1cm</label>
+                        <br>
                         <input type="number" id="swatch-rows">
                     </div>
-                    <div class="pattern-properties-col-3">
+                    <div class="name-container">
+                        <label for="name">Name</label>
+                        <br>
                         <input type="text" id="name">
                     </div>
-                    <div class="pattern-properties-col-4">
+                    <div class="notes-container">
+                        <label for="notes">Notes</label>
+                        <br>
                         <input type="text" id="notes">
                     </div>
-                    <div class="pattern-properties-col-5">
+                    <div class="file-picker-container">
+                        <br>
                         <label for="file-picker" id="file-picker-label">Load Pattern</label>
                         <input type="file" id="file-picker">
                     </div>
-                    <div class="pattern-properties-col-6" >
+                    <div class="save-file-button-container">
+                        <br>
                         <button id="save-file-button" onclick="createTextFile()">Save Pattern</button><br>
                     </div>
-                    <div id="cast-on-label">
+                    <div class="cast-on-container">
                         <label for="cast-on">Cast-On / cm</label>
-                    </div>
-                    <div id="times-2-label">
-                        <label for="times-2">x2</label>
-                    </div>
-                    <div class="pattern-properties-col-2">
-                        <label for="yarn">Yarn</label>
-                    </div>
-                    <div id="tension-label">
-                        <label for="tension">Tension</label>
-                    </div>
-                    <div id="ends-label">
-                        <label for="ends">Ends</label>
-                    </div>
-                    <div id="rib-label">
-                        <label for="rib">Rib / cm</label>
-                    </div>
-                    <div id="cast-on-box">
+                        <br>
                         <input type="number" id="cast-on" name="cast-on">
                     </div>
-                    <div id="times-2-box">
+                    <div class="times-2-container">
+                        <label for="times-2">x2</label>
+                        <br>
                         <input type="checkbox" id="times-2" name="times-2" checked>
                     </div>
-                    <div id="yarn-box">
+                    <div class="yarn-container">
+                        <label for="yarn">Yarn</label>
+                        <br>
                         <input type="text" id="yarn" name="yarn">
                     </div>
-                    <div id="tension-box">
-                        <input type="number" id="tension" name="tension">    
+                    <div class="tension-container">
+                        <label for="tension">Tension</label>
+                        <br>
+                        <input type="number" id="tension" name="tension">
                     </div>
-                    <div id="ends-box">
+                    <div class="ends-container">
+                        <label for="ends">Ends</label>
+                        <br>
                         <input type="number" id="ends" name="ends">
                     </div>
-                    <div id="rib-box">
+                    <div class="rib-container">
+                        <label for="rib">Rib / cm</label>
+                        <br>
                         <input type="number" id="rib" name="rib">
                     </div>
                 </div>
@@ -90,10 +84,12 @@
                         <button onclick="removeInputsBothSides()">Remove Section</button>
                     </div>
                     <div class="col-2">
-                        <h5>Horizontal Change / cm</h5>
+                        <h5 class="desktop-view-heading">Horizontal Change / cm</h5>
+                        <h5 class="mobile-view-heading">H Change / cm</h5>
                     </div>
                     <div class="col-3">
-                        <h5>Vertical Change / cm</h5>
+                        <h5 class="desktop-view-heading">Vertical Change / cm</h5>
+                        <h5 class="mobile-view-heading">V Change / cm</h5>
                     </div>
                     <div class="col-4">
                         <h5>I</h5>
@@ -152,10 +148,12 @@
                         <h4>Right</h4>
                     </div>
                     <div class="col-2">
-                        <h5>Horizontal Change / cm</h5>
+                        <h5 class="desktop-view-heading">Horizontal Change / cm</h5>
+                        <h5 class="mobile-view-heading">H Change / cm</h5>
                     </div>
                     <div class="col-3">
-                        <h5>Vertical Change / cm</h5>
+                        <h5 class="desktop-view-heading">Vertical Change / cm</h5>
+                        <h5 class="mobile-view-heading">V Change / cm</h5>
                     </div>
                     <div class="col-4">
                         <h5>I</h5>
@@ -210,8 +208,8 @@
                     </div>
                 </div>
             </div>
-            <div class="details" id="details">
-                <div class="details-title">
+            <div class="detail" id="detail">
+                <div class="detail-title">
                     <h4>Detail</h4>
                 </div>
                 <div class="add-section-button">
@@ -224,12 +222,12 @@
                     <h5>Detail</h5>
                 </div>
                 <div class="detail-col-3">
-                    <h5> Above Section #</h5>
+                    <h5>Above Section #</h5>
                 </div>
                 <div class="detail-col-4">
                     <h5>Height Above / cm</h5>
                 </div>
-                <div class="col-1">
+                <div class="detail-col-1">
                     <h5>1.</h5>
                 </div>
                 <div class="detail-col-2">
@@ -252,6 +250,5 @@
             <h3>Results</h3>
         </div>
     </div>
-    <script src="./resources/main.js"></script>
 </body>
 </html>

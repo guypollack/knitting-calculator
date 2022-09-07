@@ -129,8 +129,8 @@ function removeInputRow() {
 
 
 function addDetailRow() {
-    const newRowNumber = findNumberOfExistingRows("details",3) + 1;
-    const detailsInputArea = document.getElementById("details");
+    const newRowNumber = findNumberOfExistingRows("detail",3) + 1;
+    const detailInputArea = document.getElementById("detail");
 
     let newDetailInputRowLabelText = ""
     if (newRowNumber < 10) { //can change - no longer needed?
@@ -143,7 +143,7 @@ function addDetailRow() {
     const newRowLabelNode = document.createElement("h5");
     const newRowLabel = document.createTextNode(newDetailInputRowLabelText);
     
-    detailsInputArea.appendChild(newRowLabelContainer);
+    detailInputArea.appendChild(newRowLabelContainer);
     newRowLabelContainer.appendChild(newRowLabelNode);
     newRowLabelNode.appendChild(newRowLabel);
     newRowLabelContainer.classList.add("col-1");
@@ -164,13 +164,13 @@ function addDetailRow() {
     const newRowInput3 = createInputElement(type="number",`detail-${newRowNumber}-height`,`detail-${newRowNumber}-height`,"");
     newRowInput3Container.append(newRowInput3);
     
-    detailsInputArea.appendChild(newRowInput1Container);
-    detailsInputArea.appendChild(newRowInput2Container);
-    detailsInputArea.appendChild(newRowInput3Container);
+    detailInputArea.appendChild(newRowInput1Container);
+    detailInputArea.appendChild(newRowInput2Container);
+    detailInputArea.appendChild(newRowInput3Container);
 }
 
 function removeDetailRow() {
-    const lastRowNumber = findNumberOfExistingRows("details",3);
+    const lastRowNumber = findNumberOfExistingRows("detail",3);
 
     if (lastRowNumber > 1) {
         document.getElementById(`detail-${lastRowNumber}-height`).parentNode.remove();
@@ -196,12 +196,12 @@ function extractInputs(side,start,end) {
     return inputs;
 }
 
-function extractDetails() {
-    const details = [];
-    for (let i = 1; i <= findNumberOfExistingRows("details",3); i++) {
-        details.push([document.getElementById(`detail-${i}`).value,+document.getElementById(`detail-${i}-above`).value,+document.getElementById(`detail-${i}-height`).value]);
+function extractdetail() {
+    const detail = [];
+    for (let i = 1; i <= findNumberOfExistingRows("detail",3); i++) {
+        detail.push([document.getElementById(`detail-${i}`).value,+document.getElementById(`detail-${i}-above`).value,+document.getElementById(`detail-${i}-height`).value]);
     }
-    return details;
+    return detail;
 }
 
 function calculateRowsUpToSectionInclusive(section,swatchRows) {
@@ -239,7 +239,7 @@ function calculateInstructions() {
     const inputRows = findNumberOfExistingRows("l-changes",4);
     const inputsL = extractInputs("l",1,inputRows);
     const inputsR = extractInputs("r",1,inputRows);
-    const detailsInputs = extractDetails();
+    const detailInputs = extractdetail();
 
     let addedStitchesL = [];
     let totalRowsL = 0;
@@ -288,18 +288,18 @@ function calculateInstructions() {
         }
     }
 
-    for (i = 0; i < detailsInputs.length; i++) {
-        const detailRow = Math.round(calculateRowsUpToSectionInclusive(detailsInputs[i][1],swatchRows)) + Math.round(detailsInputs[i][2] * swatchRows);
+    for (i = 0; i < detailInputs.length; i++) {
+        const detailRow = Math.round(calculateRowsUpToSectionInclusive(detailInputs[i][1],swatchRows)) + Math.round(detailInputs[i][2] * swatchRows);
         if (detailRow > 0) {
             if (detailRow in stitchTotals) {
                 //console.log(stitchTotals[detailRow][2] === "  ")
                 if (stitchTotals[detailRow][2] === "  ") {
-                    stitchTotals[detailRow][2] = detailsInputs[i][0];
+                    stitchTotals[detailRow][2] = detailInputs[i][0];
                 } else {
-                    stitchTotals[detailRow][2] = `${stitchTotals[detailRow][2]}; ${detailsInputs[i][0]}`;
+                    stitchTotals[detailRow][2] = `${stitchTotals[detailRow][2]}; ${detailInputs[i][0]}`;
                 }
             } else {
-                stitchTotals[detailRow] = ["  ","  ",detailsInputs[i][0]];
+                stitchTotals[detailRow] = ["  ","  ",detailInputs[i][0]];
             }
         }
     }
@@ -382,8 +382,8 @@ function calculateInstructions() {
 
         let newCell4 = newRow.insertCell();
         newCell4.setAttribute("style","font-size:8pt ; border-top:none ; border-bottom:none ; border-right:none")
-        let details = stitchTotals[elem][2];
-        let newText4 = document.createTextNode(details);
+        let detail = stitchTotals[elem][2];
+        let newText4 = document.createTextNode(detail);
         newCell4.appendChild(newText4);
     }
 }
@@ -393,7 +393,7 @@ function listAllInputElements() {
     for (i = 1; i <= findNumberOfExistingRows("l-changes",4); i++) {
         allElements.push(`l-hchange-${i}`,`l-vchange-${i}`,`l-i-${i}`,`l-d-${i}`,`r-hchange-${i}`,`r-vchange-${i}`,`r-i-${i}`,`r-d-${i}`);
     }
-    for (i = 1; i <= findNumberOfExistingRows("details",3); i++) {
+    for (i = 1; i <= findNumberOfExistingRows("detail",3); i++) {
         allElements.push(`detail-${i}`,`detail-${i}-above`,`detail-${i}-height`);
     }
     return allElements;
@@ -470,7 +470,7 @@ function addOrRemoveSections(text) {
     detailRowsInText /= 3;
     
     const currentSections = findNumberOfExistingRows("l-changes",4);
-    const currentDetailRows = findNumberOfExistingRows("details",3);
+    const currentDetailRows = findNumberOfExistingRows("detail",3);
 
     if (sectionsInText != currentSections) {
         const sectionDifference = sectionsInText - currentSections;
@@ -537,7 +537,7 @@ input.addEventListener("change", () => {
     reader.readAsText(file);
 })
 
-document.getElementsByClassName("changes-container")[0].style.height = "190px";
+// document.getElementsByClassName("changes-container")[0].style.height = "190px";
 
 
 //from testchildcount.js
@@ -605,19 +605,19 @@ function removeInput(side,currentRowNumber) {
 }
 
 function insertInputsBothSides() {
-    let currentHeight = Number(document.getElementsByClassName("changes-container")[0].style.height.slice(0,3));
-    currentHeight += 40;
+    let currentHeight = Number(document.querySelector(".changes-container").offsetHeight);
+    // currentHeight += 40;
     insertInput("l",currentRowCount()+1);
     insertInput("r",currentRowCount());
-    document.getElementsByClassName("changes-container")[0].style.height = `${currentHeight}px`;
+    // document.getElementsByClassName("changes-container")[0].style.height = `${currentHeight}px`;
 }
 
 function removeInputsBothSides() {
-    let currentHeight = Number(document.getElementsByClassName("changes-container")[0].style.height.slice(0,3));
+    let currentHeight = Number(document.querySelector(".changes-container").offsetHeight);
     if (currentRowCount() > 1) {
-        currentHeight -= 40;
+        // currentHeight -= 40;
         removeInput("l",currentRowCount());
         removeInput("r",currentRowCount()+1);
-        document.getElementsByClassName("changes-container")[0].style.height = `${currentHeight}px`;
+        // document.getElementsByClassName("changes-container")[0].style.height = `${currentHeight}px`;
     }
 }

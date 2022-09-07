@@ -2,7 +2,7 @@
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     white-space: nowrap;
-    overflow: scroll;
+    overflow: visible;
     margin-right: 0;
     position: relative;
 }
@@ -20,8 +20,14 @@ html,body {
     margin: 0px;
 }
 
-html, body, div {
-    /* border: 0.5px solid black; */
+.body {
+    /* overflow-x: hidden; */
+}
+
+@media only screen and (max-width: 600px) {
+    * {
+        overflow-x: hidden;
+    }
 }
 
 div {
@@ -36,21 +42,35 @@ h5 {
     font-size: 9.5pt;
 }
 
+input[type="number"], input[type="text"] {
+    height: 15px;
+}
+
 .content {
     display: grid;
     grid-template-columns: 960px 600px;
 }
 
-.pattern-properties {
+@media only screen and (max-width: 600px) {
+    .content {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+    }    
+}
+
+.input-area {
     background-color: rgb(218, 252, 226);
+}
+
+.pattern-properties {
     display: grid;
     grid-template-columns: repeat(36, 1fr);
     gap: 0px 10px;
     padding-bottom: 20px;
 }
 
-.pattern-properties h3 {
-    grid-column: 2 / span 35;
+.input-area h3 {
+    margin-left: 27px;
 }
 
 .pattern-properties label {
@@ -58,40 +78,40 @@ h5 {
     height: 10px;
 }
 
-.pattern-properties-col-1 {
+.swatch-stitches-container {
     grid-column: 2 / span 7;
 }
 
-.pattern-properties-col-1 input {
+.swatch-stitches-container input {
     width: 168px;
 }
 
-.pattern-properties-col-2 {
+.swatch-rows-container, .yarn-container {
     grid-column: 9 / span 6;
 }
 
-.pattern-properties-col-2 input {
+.swatch-rows-container input, .yarn-container input {
     width: 140px
 }
 
-.pattern-properties-col-3 {
+.name-container {
     grid-column: 15 / span 7;
 }
 
-.pattern-properties-col-4 input {
+.notes-container input {
     width: 110px;
 }
 
-.pattern-properties-col-4 {
+.notes-container {
     grid-column: 22 / span 5;
 }
 
-.pattern-properties-col-5 {
+.file-picker-container {
     grid-column: 27 / span 5;
     overflow: hidden;
 }
 
-.pattern-properties-col-6 {
+.save-file-button-container {
     grid-column: 32 / span 5;
     margin-left: -7px;
 }
@@ -100,7 +120,7 @@ h5 {
     visibility: hidden;
 }
 
-#file-picker-label {
+#file-picker-label, button {
     /* align-items: flex-start; */
     /* appearance: auto; */
     background-color: rgb(239, 239, 239);
@@ -144,7 +164,7 @@ h5 {
     padding-bottom: 1px;
     padding-left: 6px;
     padding-right: 6px;
-    padding-top: 1px;
+    padding-top: 2px;
     position: relative;
     text-align: center;
     text-indent: 0px;
@@ -158,23 +178,23 @@ h5 {
     -webkit-border-image: none;
 }
 
-#file-picker-label:hover {
+#file-picker-label:hover, button:hover {
     background-color: rgb(229, 229, 229);
 }
 
-#cast-on-label, #cast-on-box {
+.cast-on-container {
     grid-column: 2 / span 6;
 }
 
-#cast-on-box input{
+#cast-on {
     width: 140px;
 }
 
-#times-2-label, #times-2-box {
+.times-2-container {
     grid-column: 8 / span 1;
 }
 
-#times-2-box input {
+#times-2 {
     margin-left: 1.5px;
 }
 
@@ -186,20 +206,54 @@ h5 {
     width: 140px;
 }
 
-#tension-label, #tension-box {
+.tension-container {
     grid-column: 15 / span 4;
 }
 
-#ends-label, #ends-box {
+.ends-container {
     grid-column: 19 / span 4;
 }
 
-#rib-label, #rib-box {
+.rib-container {
     grid-column: 23 / span 4;
 }
 
-#tension-box input, #ends-box input, #rib-box input{
-    width: 85px;
+#tension, #ends, #rib {
+    width: 83px;
+}
+
+@media only screen and (max-width: 600px) {
+    .pattern-properties {
+        /* background-color: red; */
+        grid-template-columns: repeat(2, 50vw);
+        grid-template-rows: repeat(5,50px);
+    }
+    .pattern-properties div {
+        /* border: 1px solid black; */
+    }
+    .input-area h3 {
+        height: 20px;
+        padding-bottom: 10px;
+    }
+    .input-area h3, .swatch-stitches-container, .name-container,
+    .file-picker-container, .cast-on-container, .yarn-container,
+    .ends-container, .file-picker-container {
+        grid-column: 1;
+        margin-left: 50px;
+    }
+    .swatch-rows-container, .notes-container, .save-file-button-container,
+    .times-2-container, .tension-container, .rib-container,
+    .save-file-button-container {
+        grid-column: 2;
+        margin-left: 0px;
+    }
+    .file-picker-container, .save-file-button-container {
+        grid-row: 6;
+        margin-top: -10px;
+    }
+    .pattern-properties input[type="number"], .pattern-properties input[type="text"], #cast-on, #yarn, #tension, #ends, #rib {
+        width: 35vw;
+    }
 }
 
 .changes-container {
@@ -207,14 +261,45 @@ h5 {
     grid-template-columns: repeat(2,1fr);
 }
 
+@media only screen and (max-width: 600px) {
+    .changes-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2,auto);
+    }
+}
+
 .changes {
     display: grid;
     grid-template-columns: repeat(21,1fr);
     align-items: center;
-    grid-template-rows: 55px 10px repeat(3,40px);
+    grid-template-rows: 55px 10px 40px;
     grid-auto-rows: 40px;
     overflow: hidden;
-    height: auto;
+    height: fit-content;
+    padding-bottom: 10px;
+}
+
+.changes div {
+    /* border: 1px solid black; */
+}
+
+.mobile-view-heading {
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .mobile-view-heading {
+        display: block;
+    }
+    .desktop-view-heading {
+        display: none;
+    }
+    .changes {
+        grid-template-columns: repeat(18,1fr);
+    }
+    .changes div {
+        /* border: 1px solid black; */
+    }
 }
 
 #l-changes {
@@ -225,7 +310,7 @@ h5 {
     background-color: rgb(255, 200, 200)
 }
 
-.changes-title, .details-title {
+.changes-title, .detail-title {
     grid-column: 3 / span 3;
 }
 
@@ -274,7 +359,42 @@ h5 {
     margin-top: 0px;
 }
 
-.details {
+@media only screen and (max-width: 600px) {
+    .changes-title {
+        grid-column: 2;
+    }
+    .add-section-button {
+        grid-column: 3 / span 3;
+        margin-left: 30px;
+    }
+    .remove-section-button {
+        grid-column: 6 / span 3;
+        margin-left: 20px;
+    }
+    .col-1 {
+        grid-column: 1;
+        justify-self: end;
+    }
+    .col-2 {
+        grid-column: 2 / span 3;
+    }
+    .col-3 {
+        grid-column: 5 / span 3;
+    }
+    .col-4 {
+        grid-column: 8;
+        margin-left: -50px;
+    }
+    .col-5 {
+        grid-column: 9;
+        margin-left: -100px;
+    }
+    .changes input[type="number"] {
+        width: 110px;
+    }
+}
+
+.detail {
     background-color: rgb(146, 216, 216)    ;
     display: grid;
     grid-template-columns: repeat(42,1fr);
@@ -282,7 +402,13 @@ h5 {
     grid-auto-rows: 40px;
     align-items: center;
     overflow: hidden;
-    padding-bottom: 5px;
+    padding-bottom: 10px;
+}
+
+.detail-col-1 {
+    grid-column: 1 / span 2;
+    justify-self: end;
+    margin-right: 5px;
 }
 
 .detail-col-2 {
@@ -305,12 +431,52 @@ h5 {
     width: 125px;
 }
 
+.detail-col-2 h5, .detail-col-3 h5, .detail-col-4 h5 {
+    margin-top: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+    .detail {
+        grid-template-columns: repeat(18,1fr);
+    }
+    .detail-title {
+        grid-column: 2 / span 2;
+    }
+    .detail > .add-section-button {
+        grid-column: 4 / span 3;
+        margin-left: -20px;
+    }
+    .detail > .remove-section-button {
+        grid-column: 7 / span 3;
+        margin-left: -40px;
+    }
+    .detail-col-1 {
+        grid-column: 1;
+    }
+    .detail-col-2 {
+        grid-column: 2 / span 3;
+    }
+    .detail-col-3 {
+        grid-column: 5 / span 4;
+    }
+    .detail-col-4 {
+        grid-column: 9 / span 2;
+        margin-left: -50px;
+    }
+}
+
 .submit {
     display: grid;
     height: 50px;
     justify-content: center;
     align-items: center;
     background-color: rgb(255, 237, 157);
+}
+
+@media only screen and (max-width: 600px) {
+    .submit {
+        width: 100vw;
+    }
 }
 
 .results-area {
@@ -341,7 +507,7 @@ table {
     display: inline-block;
     text-align: center;
     margin-left: 28px;
-    padding-bottom: 22.5px;
+    padding-xbottom: 22.5px;
     /* min-width: 190px; */
 }
 
@@ -355,4 +521,11 @@ td {
 td:nth-child(4)  {
     padding-left: 10px;
     text-align: left;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .results-area h3, .results-area p, .results-area table {
+        margin-left: 50px;
+    }
 }
