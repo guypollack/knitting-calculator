@@ -397,7 +397,7 @@ input[type="number"], input[type="text"] {
         margin-left: -4px;
     }
     .col-3 {
-        grid-column: 9 / span 6;
+        grid-column: 9 / span 7;
     }
     .col-4 {
         grid-column: 16;
@@ -407,12 +407,12 @@ input[type="number"], input[type="text"] {
         grid-column: 17;
     }
     .changes input[type="number"] {
-        width: 110px;
+        width: 100px;
     }
 }
 
 .detail {
-    background-color: rgb(146, 216, 216)    ;
+    background-color: rgb(146, 216, 216);
     display: grid;
     grid-template-columns: repeat(42,1fr);
     grid-template-rows: 55px 10px 40px;
