@@ -255,7 +255,7 @@ function calculateInstructions() {
     let totalRowsR = 0;
 
     for (key of Object.keys(inputsR)) {
-        console.log(inputsR[key][0],inputsR[key][1],inputsR[key][2]);
+        // console.log(inputsR[key][0],inputsR[key][1],inputsR[key][2]);
         let stitchesResultsR = stitches(inputsR[key][0],inputsR[key][1],inputsR[key][2],totalRowsR,swatchStitches,swatchRows);
         addedStitchesR = addedStitchesR.concat(stitchesResultsR[0]);
         totalRowsR += stitchesResultsR[1];
@@ -374,6 +374,11 @@ function calculateInstructions() {
         }
         newCell1.appendChild(newText1);
 
+        if (newCell1.innerHTML[0] === "+") {
+            newCell1.innerHTML = "<span class='invisible-apostrophe'>'</span>"+newCell1.innerHTML;
+            newCell1.style.paddingRight = "8px";
+        }
+
         let newCell2 = newRow.insertCell();
         let newText2 = document.createTextNode(`${elem} \t`)
         newCell2.appendChild(newText2);
@@ -388,6 +393,11 @@ function calculateInstructions() {
             newCell3.setAttribute("style","color:orange");
         }
         newCell3.appendChild(newText3);
+
+        if (newCell3.innerHTML[0] === "+") {
+            newCell3.innerHTML = "<span class='invisible-apostrophe'>'</span>"+newCell3.innerHTML;
+            newCell3.style.paddingRight = "8px";
+        }
 
         let newCell4 = newRow.insertCell();
         newCell4.setAttribute("style","font-size:8pt ; border-top:none ; border-bottom:none ; border-right:none")
