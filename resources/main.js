@@ -653,7 +653,7 @@ function deselectNeighbouringCheckbox(e) {
 }
 
 function addEventListenerToAllCheckboxes() {
-    let allCheckboxes = document.querySelectorAll("input[type='checkbox']");
+    let allCheckboxes = document.querySelectorAll(".changes-container input[type='checkbox']");
 
     allCheckboxes.forEach(button => {
         button.addEventListener("click",deselectNeighbouringCheckbox);
