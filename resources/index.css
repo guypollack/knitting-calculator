@@ -394,7 +394,7 @@ input[type="number"], input[type="text"] {
     margin-top: 30px;
 }
 
-.changes input[type="radio"] {
+.changes input[type="checkbox"] {
     left: -2px;
     margin-top: 0px;
 }
@@ -539,13 +539,14 @@ input[type="number"], input[type="text"] {
 
 .results-area p {
     margin: 10px 28px;
+    font-size: 11pt;
     text-align: left;
     white-space: pre-line;
 }
 
-.small-instruction {
+/* .small-instruction {
     font-size: 9pt;
-}
+} */
 
 .cast-instruction>span {
     color: red;

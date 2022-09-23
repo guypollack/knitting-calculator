@@ -1,9 +1,11 @@
 function stitches(hLength, vLength, direction, totalRows, swatchStitches, swatchRows) {
     const totalStitchesToAdd = Math.round(hLength * swatchStitches);
-    const rowsInSection = Math.round(vLength * swatchRows);
+    const rowsInSection = Math.round(vLength * swatchRows) > 0 ? Math.round(vLength * swatchRows) : 1;
     const stitchAddingInterval = rowsInSection / totalStitchesToAdd;
+
     let stitchesArray = [];
     let i = 1;
+    
     while (i * stitchAddingInterval <= rowsInSection) {
         if (Math.round(i * stitchAddingInterval) === 0) {
             stitchesArray.push(totalRows + 1);
@@ -126,7 +128,6 @@ function removeInputRow() {
     }
 }
 */
-
 
 function addDetailRow() {
     const newRowNumber = findNumberOfExistingRows("detail",3) + 1;
@@ -254,10 +255,12 @@ function calculateInstructions() {
     let totalRowsR = 0;
 
     for (key of Object.keys(inputsR)) {
+        console.log(inputsR[key][0],inputsR[key][1],inputsR[key][2]);
         let stitchesResultsR = stitches(inputsR[key][0],inputsR[key][1],inputsR[key][2],totalRowsR,swatchStitches,swatchRows);
         addedStitchesR = addedStitchesR.concat(stitchesResultsR[0]);
         totalRowsR += stitchesResultsR[1];
     }
+
 
     let stitchTotals = {};
 
@@ -322,13 +325,19 @@ function calculateInstructions() {
     smallInstructionsNode.setAttribute("class","small-instruction");
     smallInstructionsNode.setAttribute("id","small-instruction-text");
     smallInstructionsNode.setAttribute("style","text-align:left")
-    const smallInstructionText = `Name: ${document.getElementById("name").value} \n \
-                                    Yarn: ${document.getElementById("yarn").value} \n \
-                                    Tension: ${document.getElementById("tension").value} \n \
-                                    Ends: ${document.getElementById("ends").value} \n \
-                                    Rib: ${ribRows} rows \n \
+
+
+    const smallInstructionText = `Name: ${document.getElementById("name").value} <br> \
+                                    Yarn: ${document.getElementById("yarn").value} <br> \
+                                    Tension: ${document.getElementById("tension").value} <br> \
+                                    Ends: ${document.getElementById("ends").value} <br> \
+                                    Rib: ${ribRows} rows <br> \
                                     Notes: ${document.getElementById("notes").value}`
-    smallInstructionsNode.appendChild(document.createTextNode(smallInstructionText));
+                                    
+    // smallInstructionsNode.appendChild(document.createTextNode(""));
+    smallInstructionsNode.innerHTML = smallInstructionText;
+
+
     resultsArea.appendChild(smallInstructionsNode);
 
     for (elem of Object.keys(stitchTotals).sort((a,b) => b-a)) {
@@ -341,7 +350,7 @@ function calculateInstructions() {
     castOnOffNode.setAttribute("style","margin-top:16pt");
     castOnOffNode.appendChild(document.createTextNode(""));
     resultsArea.appendChild(castOnOffNode);
-    document.getElementById("cast-on-off-text").innerHTML = `Cast On: <span>${castOn} x ${castMultiplier}</span> \n \n \
+    document.getElementById("cast-on-off-text").innerHTML = `Cast On: <span>${castOn} x ${castMultiplier}</span> <br> \
                                                                 Cast Off: <span>${castOff} x ${castMultiplier}</span>`;
 
     let table = document.createElement("table");
@@ -577,7 +586,7 @@ function insertInput(side,newRowNumber) {
     const divToInsert4 = document.createElement("div");
     const inputToInsert4 = document.createElement("input");
     divToInsert4.setAttribute("class","col-4");
-    inputToInsert4.setAttribute("type","radio");
+    inputToInsert4.setAttribute("type","checkbox");
     inputToInsert4.setAttribute("name",`${side}-i-d-${newRowNumber}`);
     inputToInsert4.setAttribute("id",`${side}-i-${newRowNumber}`);
     divToInsert4.appendChild(inputToInsert4);
@@ -586,7 +595,7 @@ function insertInput(side,newRowNumber) {
     const divToInsert5 = document.createElement("div");
     const inputToInsert5 = document.createElement("input");
     divToInsert5.setAttribute("class","col-5");
-    inputToInsert5.setAttribute("type","radio");
+    inputToInsert5.setAttribute("type","checkbox");
     inputToInsert5.setAttribute("name",`${side}-i-d-${newRowNumber}`);
     inputToInsert5.setAttribute("id",`${side}-d-${newRowNumber}`);
     divToInsert5.appendChild(inputToInsert5);
@@ -610,6 +619,7 @@ function insertInputsBothSides() {
     insertInput("l",currentRowCount()+1);
     insertInput("r",currentRowCount());
     // document.getElementsByClassName("changes-container")[0].style.height = `${currentHeight}px`;
+    addEventListenerToAllCheckboxes();
 }
 
 function removeInputsBothSides() {
@@ -620,4 +630,24 @@ function removeInputsBothSides() {
         removeInput("r",currentRowCount()+1);
         // document.getElementsByClassName("changes-container")[0].style.height = `${currentHeight}px`;
     }
+    addEventListenerToAllCheckboxes();
 }
+
+function deselectNeighbouringCheckbox(e) {
+    console.log(e.target.id, e.target.id.slice(2,3));
+    if (e.target.id.slice(2,3) === "i") {
+        document.getElementById(e.target.id.replace("i","d")).checked = false;
+    } else {
+        document.getElementById(e.target.id.replace("d","i")).checked = false;
+    }
+}
+
+function addEventListenerToAllCheckboxes() {
+    let allCheckboxes = document.querySelectorAll("input[type='checkbox']");
+
+    allCheckboxes.forEach(button => {
+        button.addEventListener("click",deselectNeighbouringCheckbox);
+    })
+}
+
+addEventListenerToAllCheckboxes();
